@@ -1,0 +1,39 @@
+<html>
+
+<head>
+    <title>Creative Node</title>
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|K2D" rel="stylesheet">
+</head>
+
+<body>
+    <form>
+        <h1>Wanna hear a joke?</h1>
+        <input id="searchbutton" class="button" type="button" value="Submit"></span>
+        <span id="results" class="test"></span>
+    </form>
+
+    <script>
+        $("#searchbutton").click(function(event) {
+            console.log("button clicked")
+            event.preventDefault();
+            url = "joke";
+            console.log(url);
+            $.getJSON(url, function(data) {
+                console.log(data);
+                var everything = "<ul>";
+
+                everything += "<li>" + data.setup + "</li>"
+                everything += "<li>" + data.punchline + "</li>"
+
+                everything += "</ul>";
+                console.log(everything)
+                $("#results").html(everything);
+            })
+        })
+    </script>
+
+</body>
+
+</html>
