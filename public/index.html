@@ -9,13 +9,13 @@
 
 <body>
     <form>
-        <h1>Wanna hear a joke?</h1>
-        <input id="searchbutton" class="button" type="button" value="Submit"></span>
+        <h1 id="header">Wanna hear a joke?</h1>
+        <button data-text-swap="Show Me Another!" id="jokebutton" class="button" type="button">Yes Please!</button></span>
         <span id="results" class="test"></span>
     </form>
 
     <script>
-        $("#searchbutton").click(function(event) {
+        $("#jokebutton").click(function(event) {
             console.log("button clicked")
             event.preventDefault();
             url = "joke";
@@ -23,15 +23,21 @@
             $.getJSON(url, function(data) {
                 console.log(data);
                 var everything = "<ul>";
-
                 everything += "<li>" + data.setup + "</li>"
                 everything += "<li>" + data.punchline + "</li>"
-
                 everything += "</ul>";
                 console.log(everything)
                 $("#results").html(everything);
             })
         })
+    </script>
+
+    <script>
+        var button = $("button");
+        button.on("click", function() {
+            button.data("text-original", button.text());
+            button.text(button.data("text-swap"));
+        });
     </script>
 
 </body>
